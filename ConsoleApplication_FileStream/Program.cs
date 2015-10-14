@@ -17,7 +17,8 @@ namespace ConsoleApplication_FileStream
             for (int i = 0; i <= 30; i++)
             {
                 Console.Write(F.Position + "---");
-                Console.WriteLine(F.ReadByte()+" ");
+                Console.Write(F.ReadByte()+" ");
+                Console.WriteLine(F.Position + "---");
             }
             F.Close();
             Console.ReadKey();
