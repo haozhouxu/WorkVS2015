@@ -7,7 +7,12 @@ namespace ConsoleApplication_FileStream
     {
         static void Main(string[] args)
         {
-            FileStream F = new FileStream("test.dat",FileMode.OpenOrCreate,FileAccess.ReadWrite);
+            FileStream();
+        }
+
+        public static void FileStream()
+        {
+            FileStream F = new FileStream("test.dat", FileMode.OpenOrCreate, FileAccess.ReadWrite);
             for (int i = 1; i <= 20; i++)
             {
                 F.WriteByte((byte)i);
@@ -17,7 +22,7 @@ namespace ConsoleApplication_FileStream
             for (int i = 0; i <= 30; i++)
             {
                 Console.Write(F.Position + "---");
-                Console.Write(F.ReadByte()+" ");
+                Console.Write(F.ReadByte() + " ");
                 Console.WriteLine(F.Position + "---");
             }
             F.Close();
