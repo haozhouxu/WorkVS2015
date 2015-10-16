@@ -27,7 +27,8 @@ namespace WebBrowserTest
             string url = "http://yuqing.p5w.net/yqjc/views/yqjc/dispatch";
             string gsdm = "000002";
             InitializeComponent();
-            wbSample.Navigate(url + "?stockCode=" + gsdm + "&sign=" + GetMD5(gsdm));
+            //wbSample.Navigate(url + "?stockCode=" + gsdm + "&sign=" + GetMD5(gsdm));
+            wbSample.Navigate("http://wltp.cninfo.com.cn/gddh_vote/cis/logon.do");
         }
 
         private string GetMD5(string input)
