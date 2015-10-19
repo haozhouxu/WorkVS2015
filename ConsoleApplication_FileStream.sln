@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApplication_MD5", "C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfApplication_WebBrower", "WpfApplication_WebBrower\WpfApplication_WebBrower.csproj", "{A8C1F7C6-1E60-47F5-99E9-A67280B368A4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfApplication_MVVM", "WpfApplication_MVVM\WpfApplication_MVVM.csproj", "{B1FD9CAB-1240-4B78-B4DF-0E41A735F757}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{A8C1F7C6-1E60-47F5-99E9-A67280B368A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A8C1F7C6-1E60-47F5-99E9-A67280B368A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A8C1F7C6-1E60-47F5-99E9-A67280B368A4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B1FD9CAB-1240-4B78-B4DF-0E41A735F757}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B1FD9CAB-1240-4B78-B4DF-0E41A735F757}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B1FD9CAB-1240-4B78-B4DF-0E41A735F757}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B1FD9CAB-1240-4B78-B4DF-0E41A735F757}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
