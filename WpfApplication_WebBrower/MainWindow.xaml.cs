@@ -25,10 +25,20 @@ namespace WebBrowserTest
         {
             //http://yuqing.p5w.net/yqjc/views/yqjc/dispatch?stockCode=000002&sign=4dd68a2eb0a79e4a85da2016ef5dc4cd
             string url = "http://yuqing.p5w.net/yqjc/views/yqjc/dispatch";
-            string gsdm = "000002";
+            string gsdm = "601607";
             InitializeComponent();
-            //wbSample.Navigate(url + "?stockCode=" + gsdm + "&sign=" + GetMD5(gsdm));
-            wbSample.Navigate("http://wltp.cninfo.com.cn/gddh_vote/cis/logon.do");
+            wbSample.Navigate(url + "?stockCode=" + gsdm + "&sign=" + GetMD5(gsdm));
+            //签约的客户：
+            //苏宁云商    002024
+            //南京银行    601009
+            //兴业银行    601166
+
+            //非签约客户：
+            //天玑科技    300245
+            //上汽集团    600104
+            //上海医药    601607
+
+            //wbSample.Navigate("http://wltp.cninfo.com.cn/gddh_vote/cis/logon.do");
         }
 
         private string GetMD5(string input)
