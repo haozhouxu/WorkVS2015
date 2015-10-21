@@ -1,0 +1,12 @@
+﻿<Window x:Class="WpfApplication_WebBrower.test"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Loaded="Window_Loaded" KeyDown="Window_KeyDown"  
+        x:Name="mainWin" Height="350" Width="525">
+    <Grid>
+        <TextBox x:Name="tb1" FontSize="50" Margin="73,12,84,218" />
+        <TextBox x:Name="tb2" FontSize="50" Margin="73,119,84,117" />
+        <Button x:Name="btn" Content="Auto Click and Change Font Color" 
+                Click="btn_Click"  Margin="73,229,84,36" />
+    </Grid>
+</Window>

@@ -13,6 +13,10 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Security.Cryptography;
+using System.Windows.Forms;
+using System.Windows.Input;
+using System.Windows.Threading;
+using System.Windows.Interop;
 
 namespace WebBrowserTest
 {
@@ -25,20 +29,39 @@ namespace WebBrowserTest
         {
             //http://yuqing.p5w.net/yqjc/views/yqjc/dispatch?stockCode=000002&sign=4dd68a2eb0a79e4a85da2016ef5dc4cd
             string url = "http://yuqing.p5w.net/yqjc/views/yqjc/dispatch";
-            string gsdm = "601607";
+            string gsdm = "002236";
             InitializeComponent();
-            wbSample.Navigate(url + "?stockCode=" + gsdm + "&sign=" + GetMD5(gsdm));
+            //wbSample.Navigate(url + "?stockCode=" + gsdm + "&sign=" + GetMD5(gsdm));
             //签约的客户：
             //苏宁云商    002024
             //南京银行    601009
             //兴业银行    601166
+
+            //大华股份  002236
+            //证通电子   002197
+            //陕天然气   002267
+            //这三家也是签约用户
 
             //非签约客户：
             //天玑科技    300245
             //上汽集团    600104
             //上海医药    601607
 
-            //wbSample.Navigate("http://wltp.cninfo.com.cn/gddh_vote/cis/logon.do");
+
+            wbSample.Navigate("http://wltp.cninfo.com.cn/gddh_vote/cis/logon.do");
+            //txtUrl.Focus();
+            //System.Windows.Forms.SendKeys.SendWait("{BS}");
+            //System.Windows.Input.Key.Back;
+            //wbSample.Focus();
+            //IntPtr windowHandle = new WindowInteropHelper(this).Handle;
+
+            //wbSample.Dispatcher.BeginInvoke(
+            //    new Action(() => { SendKeys.SendWait("{PGDN}"); }),
+            //    DispatcherPriority.Input
+            //);
+            //Keyboard.Press(Key.Enter);
+            //System.Windows.Forms.SendKeys.Send("^{-}");
+
         }
 
         private string GetMD5(string input)
@@ -65,7 +88,7 @@ namespace WebBrowserTest
             return sBuilder.ToString();
         }
 
-        private void txtUrl_KeyUp(object sender, KeyEventArgs e)
+        private void txtUrl_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
         {
             if (e.Key == Key.Enter)
                 if (txtUrl.Text.Contains("http://") || txtUrl.Text.Contains("https://"))
