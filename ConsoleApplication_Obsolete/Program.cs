@@ -21,7 +21,7 @@ namespace ConsoleApplication_Obsolete
 
         static void Main(string[] args)
         {
-            OldMethod();
+            //OldMethod();
         }
     }
 }

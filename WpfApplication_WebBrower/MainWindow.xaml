@@ -11,8 +11,8 @@
         <CommandBinding Command="NavigationCommands.BrowseForward" CanExecute="BrowseForward_CanExecute" Executed="BrowseForward_Executed" />
         <CommandBinding Command="NavigationCommands.GoToPage" CanExecute="GoToPage_CanExecute" Executed="GoToPage_Executed" />
     </Window.CommandBindings>
-    <DockPanel>
-        <ToolBar DockPanel.Dock="Top">
+    <DockPanel LastChildFill="True">
+        <!--<ToolBar DockPanel.Dock="Top">
             <Button Command="NavigationCommands.BrowseBack">
                 <Image Source="/Images/left.png" Width="16" Height="16" />
             </Button>
@@ -24,7 +24,8 @@
             <Button Command="NavigationCommands.GoToPage">
                 <Image Source="/Images/go.png" Width="16" Height="16" />
             </Button>
-        </ToolBar>
-        <WebBrowser Name="wbSample" Navigating="wbSample_Navigating"></WebBrowser>
+        </ToolBar>-->
+        <WebBrowser DockPanel.Dock="Top" Name="wbSample" Navigating="wbSample_Navigating" Navigated="WbSample_OnNavigated" Visibility="Collapsed"></WebBrowser>
+        <Image Visibility="Collapsed" DockPanel.Dock="Top" x:Name="im"></Image>
     </DockPanel>
 </Window>

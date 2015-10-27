@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -29,9 +30,25 @@ namespace WebBrowserTest
         {
             //http://yuqing.p5w.net/yqjc/views/yqjc/dispatch?stockCode=000002&sign=4dd68a2eb0a79e4a85da2016ef5dc4cd
             string url = "http://yuqing.p5w.net/yqjc/views/yqjc/dispatch";
-            string gsdm = "002236";
+            string gsdm = "000002";
+            //string gsdm = "002236";
             InitializeComponent();
-            //wbSample.Navigate(url + "?stockCode=" + gsdm + "&sign=" + GetMD5(gsdm));
+            string totalurl = url + "?stockCode=" + gsdm + "&sign=" + GetMD5(gsdm);
+            HttpWebRequest request = WebRequest.CreateHttp(totalurl);
+            request.AllowAutoRedirect = false;
+            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+            if (response.StatusCode == HttpStatusCode.OK)
+            {
+                wbSample.Visibility = Visibility.Visible;
+                wbSample.Navigate(totalurl);
+            }
+            else
+            {//this.image.Source = new BitmapImage(new Uri(ofd.FileName, UriKind.Absolute));
+                im.Source = new BitmapImage(new Uri(@"C:/xhz/1.jpg", UriKind.Absolute));
+                im.Visibility = Visibility.Visible;
+            }
+            //System.Windows.MessageBox.Show(response.StatusCode.ToString());
+            
             //签约的客户：
             //苏宁云商    002024
             //南京银行    601009
@@ -48,11 +65,12 @@ namespace WebBrowserTest
             //上海医药    601607
 
 
-            wbSample.Navigate("http://wltp.cninfo.com.cn/gddh_vote/cis/logon.do");
+            // wbSample.Navigate("http://wltp.cninfo.com.cn/gddh_vote/cis/logon.do");
             //txtUrl.Focus();
             //System.Windows.Forms.SendKeys.SendWait("{BS}");
             //System.Windows.Input.Key.Back;
-            //wbSample.Focus();
+            wbSample.Focus();
+            /// <summary>  
             //IntPtr windowHandle = new WindowInteropHelper(this).Handle;
 
             //wbSample.Dispatcher.BeginInvoke(
@@ -64,7 +82,7 @@ namespace WebBrowserTest
 
         }
 
-        private string GetMD5(string input)
+    private string GetMD5(string input)
         {
             string salt = "12345";
 
@@ -90,36 +108,36 @@ namespace WebBrowserTest
 
         private void txtUrl_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
         {
-            if (e.Key == Key.Enter)
-                if (txtUrl.Text.Contains("http://") || txtUrl.Text.Contains("https://"))
-                {
-                    wbSample.Navigate(txtUrl.Text);
-                }
-                else
-                {
-                    try
-                    {
-                        wbSample.Navigate("https://" + txtUrl.Text);
-                    }
-                    catch (Exception)
-                    {
+            //if (e.Key == Key.Enter)
+            //    if (txtUrl.Text.Contains("http://") || txtUrl.Text.Contains("https://"))
+            //    {
+            //        wbSample.Navigate(txtUrl.Text);
+            //    }
+            //    else
+            //    {
+            //        try
+            //        {
+            //            wbSample.Navigate("https://" + txtUrl.Text);
+            //        }
+            //        catch (Exception)
+            //        {
 
-                        try
-                        {
-                            wbSample.Navigate("http://" + txtUrl.Text);
-                        }
-                        catch (Exception)
-                        {
+            //            try
+            //            {
+            //                wbSample.Navigate("http://" + txtUrl.Text);
+            //            }
+            //            catch (Exception)
+            //            {
 
-                            throw;
-                        }
-                    }
-                }
+            //                throw;
+            //            }
+            //        }
+            //    }
         }
 
         private void wbSample_Navigating(object sender, System.Windows.Navigation.NavigatingCancelEventArgs e)
         {
-            txtUrl.Text = e.Uri.OriginalString;
+            //txtUrl.Text = e.Uri.OriginalString;
         }
 
         private void BrowseBack_CanExecute(object sender, CanExecuteRoutedEventArgs e)
@@ -149,7 +167,25 @@ namespace WebBrowserTest
 
         private void GoToPage_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-            wbSample.Navigate(txtUrl.Text);
+            //wbSample.Navigate(txtUrl.Text);
+        }
+
+        private void WbSample_OnNavigated(object sender, NavigationEventArgs e)
+        {
+            //var browser = sender as System.Windows.Forms.WebBrowser;
+            //if(browser != null)
+            //{
+            //    var doc = AssociatedObject.Document as HTMLDocument;
+            //    if (doc != null)
+            //    {
+            //        if (doc.url.StartsWith("res://ieframe.dll"))
+            //        {
+            //            // Do stuff to handle error navigation
+            //        }
+            //    }
+            //}
+            
+            //throw new NotImplementedException();
         }
     }
 }

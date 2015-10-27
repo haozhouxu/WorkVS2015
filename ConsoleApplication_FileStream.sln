@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfApplication_MVVM", "WpfA
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApplication_FileToImage", "ConsoleApplication_FileToImage\ConsoleApplication_FileToImage.csproj", "{462A3B50-3D2F-4F60-8F1B-164F29D1C15B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApplication_LINQ", "ConsoleApplication_LINQ\ConsoleApplication_LINQ.csproj", "{3E637471-BC3A-4C5C-B4BC-D55A8FFD99D6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +65,10 @@ Global
 		{462A3B50-3D2F-4F60-8F1B-164F29D1C15B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{462A3B50-3D2F-4F60-8F1B-164F29D1C15B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{462A3B50-3D2F-4F60-8F1B-164F29D1C15B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3E637471-BC3A-4C5C-B4BC-D55A8FFD99D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3E637471-BC3A-4C5C-B4BC-D55A8FFD99D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3E637471-BC3A-4C5C-B4BC-D55A8FFD99D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3E637471-BC3A-4C5C-B4BC-D55A8FFD99D6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

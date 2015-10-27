@@ -116,7 +116,7 @@ namespace ConsoleApplication_FileToImage
                 FileStream fs = new FileStream("c:\\xhz\\file", FileMode.Create, FileAccess.Write);
                 BinaryWriter bw = new BinaryWriter(fs);
                 //设置文件读取的长度B，因为现在还没自动化，就手动设置
-                int filelength = 32123;
+                int filelength = 12890;
                 int i = 1;
                 int x = 0, y = 0;
                 int R = 0, G = 0, B = 0;
