@@ -30,7 +30,7 @@ namespace WebBrowserTest
         {
             //http://yuqing.p5w.net/yqjc/views/yqjc/dispatch?stockCode=000002&sign=4dd68a2eb0a79e4a85da2016ef5dc4cd
             string url = "http://yuqing.p5w.net/yqjc/views/yqjc/dispatch";
-            string gsdm = "000002";
+            string gsdm = "601607";
             //string gsdm = "002236";
             InitializeComponent();
             string totalurl = url + "?stockCode=" + gsdm + "&sign=" + GetMD5(gsdm);
