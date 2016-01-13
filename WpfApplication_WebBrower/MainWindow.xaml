@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WebBrowserTest"
         mc:Ignorable="d"
-        Title="MainWindow" Height="500" Width="1060">
+        Title="MainWindow" Height="600" Width="500">
     <Window.CommandBindings>
         <CommandBinding Command="NavigationCommands.BrowseBack" CanExecute="BrowseBack_CanExecute" Executed="BrowseBack_Executed" />
         <CommandBinding Command="NavigationCommands.BrowseForward" CanExecute="BrowseForward_CanExecute" Executed="BrowseForward_Executed" />
@@ -25,7 +25,7 @@
                 <Image Source="/Images/go.png" Width="16" Height="16" />
             </Button>
         </ToolBar>-->
-        <WebBrowser DockPanel.Dock="Top" Name="wbSample" Navigating="wbSample_Navigating" Navigated="WbSample_OnNavigated" Visibility="Collapsed"></WebBrowser>
+        <WebBrowser DockPanel.Dock="Top" Name="wbSample" Navigating="wbSample_Navigating" Navigated="WbSample_OnNavigated" Visibility="Collapsed" LoadCompleted="wbSample_LoadCompleted"></WebBrowser>
         <Image Visibility="Collapsed" DockPanel.Dock="Top" x:Name="im"></Image>
     </DockPanel>
 </Window>

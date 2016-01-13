@@ -18,6 +18,7 @@ using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Threading;
 using System.Windows.Interop;
+using mshtml;
 
 namespace WebBrowserTest
 {
@@ -33,7 +34,8 @@ namespace WebBrowserTest
             string gsdm = "601607";
             //string gsdm = "002236";
             InitializeComponent();
-            string totalurl = url + "?stockCode=" + gsdm + "&sign=" + GetMD5(gsdm);
+            //string totalurl = url + "?stockCode=" + gsdm + "&sign=" + GetMD5(gsdm);
+            string totalurl = @"https://open.weixin.qq.com/connect/qrconnect?appid=wx760a71c0d32a979c&redirect_uri=http%3A%2F%2Fzhulimingchina.xicp.net%2Flogin&response_type=code&scope=snsapi_login&state=470001421@qq.com#wechat_redirect";
             HttpWebRequest request = WebRequest.CreateHttp(totalurl);
             request.AllowAutoRedirect = false;
             HttpWebResponse response = (HttpWebResponse)request.GetResponse();
@@ -186,6 +188,13 @@ namespace WebBrowserTest
             //}
             
             //throw new NotImplementedException();
+        }
+
+        private void wbSample_LoadCompleted(object sender, NavigationEventArgs e)
+        {
+            mshtml.HTMLDocument dom = (mshtml.HTMLDocument)wbSample.Document;
+            dom.documentElement.style.overflow = "hidden";
+            dom.body.setAttribute("scroll", "no");
         }
     }
 }

@@ -57,7 +57,7 @@ namespace MyLogger
 
         public MyTraceListener()
         {
-            FilePath = @"C:/xhz/1.log";
+            FilePath = @"Log/1.log";
         }
 
         public override void Write(string message)
