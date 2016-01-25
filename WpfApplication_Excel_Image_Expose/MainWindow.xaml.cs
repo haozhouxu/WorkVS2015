@@ -31,7 +31,8 @@ namespace WpfApplication_Excel_Image_Expose
 
         public void Expose()
         {
-            string path = @"C:\xhz\201401.xlsx";
+            //string path = @"C:\xhz\201401.xlsx";
+            string path = @"C:\xhz\综合.xlsx";
 
             List<PictureInfo> pictures = null;
             using (SpreadsheetDocument document = SpreadsheetDocument.Open(path, true))
@@ -97,9 +98,9 @@ namespace WpfApplication_Excel_Image_Expose
             }
             //把图片信息显示在DataGridView中
             var pic1 = pictures.OrderBy(c => c.FromCol).OrderBy(c => c.FromRow).ToList();
-            dataGridView1.AutoGenerateColumns = true;
-
-            dataGridView1.ItemsSource = pic1;
+            //dataGridView1.AutoGenerateColumns = true;
+            it1.ItemsSource = pic1;
+            //dataGridView1.ItemsSource = pic1;
         }
 
     }

@@ -6,7 +6,53 @@
         xmlns:local="clr-namespace:WpfApplication_Excel_Image_Expose"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
-    <Grid>
-        <DataGrid x:Name="dataGridView1" />
-    </Grid>
+    <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Visible">
+        <DockPanel>
+            <!--<DataGrid x:Name="dataGridView1" >
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="row"  Binding="{Binding FromRow}"/>
+                <DataGridTextColumn Header="col" Binding="{Binding FromCol}" />
+                <DataGridTextColumn Header="Email" Binding="{Binding Email}" />
+                    <DataGridCheckBoxColumn Header="Member?" Binding="{Binding IsMember}" />
+                <DataGridComboBoxColumn Header="Order Status"  SelectedItemBinding="{Binding Status}" ItemsSource="{Binding Source={StaticResource myEnum}}" />
+            </DataGrid.Columns>
+        </DataGrid>-->
+            <Grid DockPanel.Dock="Top">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Row="0" Grid.Column="0" Text="FromRow" />
+                <TextBlock Grid.Row="0" Grid.Column="1" Text="FromCol" />
+                <TextBlock Grid.Row="0" Grid.Column="2" Text="RefId" />
+                <TextBlock Grid.Row="0" Grid.Column="3" Text="Image" />
+            </Grid>
+
+            <ItemsControl x:Name="it1" DockPanel.Dock="Top">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Row="0" Grid.Column="0" Text="{Binding Path='FromRow'}" />
+                            <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding Path='FromCol'}" />
+                            <TextBlock Grid.Row="0" Grid.Column="2" Text="{Binding Path='RefId'}" />
+                            <Image     Grid.Row="0" Grid.Column="3" Source="{Binding Path='Image.Source'}" />
+                        </Grid>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+
+        </DockPanel>
+
+    </ScrollViewer>
 </Window>
