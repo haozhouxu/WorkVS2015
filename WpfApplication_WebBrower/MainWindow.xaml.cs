@@ -15,7 +15,6 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Security.Cryptography;
 using System.Windows.Forms;
-using System.Windows.Input;
 using System.Windows.Threading;
 using System.Windows.Interop;
 using mshtml;

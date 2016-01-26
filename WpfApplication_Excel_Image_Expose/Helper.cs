@@ -8,11 +8,26 @@ using DocumentFormat.OpenXml.Spreadsheet;
 using DocumentFormat.OpenXml.Drawing.Spreadsheet;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
+using System.IO;
 
 namespace WpfApplication_Excel_Image_Expose
 {
-    public class ExcelHelper
+    public class helper
     {
+        public static string ImageToBase64(Image im)
+        {
+            if (im.Source == null)
+                return "";
+            BitmapImage bi = im.Source as BitmapImage;
+            MemoryStream ms = new MemoryStream();
+            JpegBitmapEncoder encoder = new JpegBitmapEncoder();
+            encoder.Frames.Add(BitmapFrame.Create(bi));
+            encoder.Save(ms);
+            byte[] by = null;
+            by = ms.ToArray();
+            return Convert.ToBase64String(by);
+        }
+
         public static string GetCellValue(WorkbookPart wbPart, Cell theCell)
         {
             string value = theCell.InnerText;

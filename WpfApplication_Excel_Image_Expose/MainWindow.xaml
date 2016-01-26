@@ -42,11 +42,31 @@
                                 <ColumnDefinition />
                                 <ColumnDefinition />
                                 <ColumnDefinition />
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                                <ColumnDefinition />
                             </Grid.ColumnDefinitions>
-                            <TextBlock Grid.Row="0" Grid.Column="0" Text="{Binding Path='FromRow'}" />
-                            <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding Path='FromCol'}" />
-                            <TextBlock Grid.Row="0" Grid.Column="2" Text="{Binding Path='RefId'}" />
-                            <Image     Grid.Row="0" Grid.Column="3" Source="{Binding Path='Image.Source'}" />
+                            <TextBlock Grid.Row="0" Grid.Column="0" Text="{Binding Path='BuyTime'}" />
+                            <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding Path='BuyPrice'}" />
+                            <TextBlock Grid.Row="0" Grid.Column="2" Text="{Binding Path='GoldPrice'}" />
+                            <TextBlock Grid.Row="0" Grid.Column="3" Text="{Binding Path='Type'}" />
+                            <TextBlock Grid.Row="0" Grid.Column="4" Text="{Binding Path='Color'}" />
+                            <TextBlock Grid.Row="0" Grid.Column="5" Text="{Binding Path='Mark'}" />
+                            <TextBlock Grid.Row="0" Grid.Column="6" Text="{Binding Path='BuySource'}" />
+                            <TextBlock Grid.Row="0" Grid.Column="7" Text="{Binding Path='SaleTime'}" />
+                            <TextBlock Grid.Row="0" Grid.Column="8" Text="{Binding Path='SaleWho'}" />
+                            <TextBlock Grid.Row="0" Grid.Column="9" Text="{Binding Path='SalePirce'}" />
+                            <TextBlock Grid.Row="0" Grid.Column="10" Text="{Binding Path='State'}" />
+                            <TextBlock Grid.Row="0" Grid.Column="11" Text="{Binding Path='Row'}" />
+                            <TextBlock Grid.Row="0" Grid.Column="12" Text="{Binding Path='Col'}" />
+                            <Image     Grid.Row="0" Grid.Column="13" Source="{Binding Path='Image.Source'}" />
                         </Grid>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>

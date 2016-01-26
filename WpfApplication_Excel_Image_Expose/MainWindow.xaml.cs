@@ -16,6 +16,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Collections.ObjectModel;
+using System.Data.SQLite;
 
 namespace WpfApplication_Excel_Image_Expose
 {
@@ -24,13 +25,63 @@ namespace WpfApplication_Excel_Image_Expose
     /// </summary>
     public partial class MainWindow : Window
     {
+
+        List<PictureInfo> pictures = new List<PictureInfo>();
+        ObservableCollection<Jewelry> oje = new ObservableCollection<Jewelry>();
+
+
         public MainWindow()
         {
             InitializeComponent();
 
-            //Expose();
+
+            Expose();
 
             table();
+
+            foreach (var item in oje)
+            {
+                var picture = pictures.FirstOrDefault(a => a.FromRow+1 == int.Parse(item.Row));
+                if (null != picture)
+                {
+                    item.Image = picture.Image;
+                }
+            }
+
+            foreach (var item in oje)
+            {
+                insertInToDB(item);
+            }
+
+            it1.ItemsSource = oje;
+        }
+
+        private void insertInToDB(Jewelry je)
+        {
+            string connectionFormat = @"Data Source=C:\xhz\{0};";
+        //更新数据，不管是编辑，还是新增
+            string connectString = string.Format(connectionFormat, "first");
+            //把图片转换成base64编码
+            string imageString = helper.ImageToBase64(je.Image);
+            string sqlAll, sql;
+            if (true)
+            {
+                sqlAll = "insert into Data (guid,image,buytime,buyprice,buywho,goldprice,type,color,mark,buySource,ownwho,state,borrowtime,borrowwho,borrowprice,borrowreturntime,saletime,salewho,saleprice,salestate,createtime,updatetime) Values('{0}','{1}','{2}',{3},'{4}',{5},'{6}','{7}','{8}','{9}','{10}','{11}','{12}','{13}',{14},'{15}','{16}','{17}',{18},'{19}','{20}','{21}')";
+                sql = string.Format(sqlAll, je.Guid, imageString, Convert.ToDateTime(je.BuyTime).ToString("s"), je.BuyPrice, "", je.GoldPrice, je.Type, je.Color, je.Mark, je.BuySource, "", je.State, Convert.ToDateTime(null).ToString("s"), "", 0, Convert.ToDateTime(null).ToString("s"), Convert.ToDateTime(je.SaleTime).ToString("s"), je.SaleWho, je.SalePirce, "", System.DateTime.Now.ToString("s"), System.DateTime.Now.ToString("s"));
+            }
+            //else
+            //{
+            //    sqlAll = "update Data set image = '{0}',buytime = '{1}',buyprice = '{2}',buywho = '{3}',goldprice = {4},type = '{5}',color = '{6}',mark = '{7}',buySource = '{8}',ownwho = '{9}',state = '{10}',borrowtime = '{11}',borrowwho = '{12}',borrowprice = {13},borrowreturntime = '{14}',saletime = '{15}',salewho = '{16}',saleprice = {17},salestate = '{18}',updatetime = '{19}' where guid='{20}'";
+            //    sql = string.Format(sqlAll, imageString, Convert.ToDateTime(je.BuyTime).ToString("s"), je.BuyPrice, je.BuyWho, je.GoldPrice, je.Type, je.Color, je.Mark, je.BuySource, je.OwnWho, je.State, Convert.ToDateTime(je.BorrowTime).ToString("s"), je.BorrowWho, je.BorrowPirce, Convert.ToDateTime(je.BorrowReturnTime).ToString("s"), Convert.ToDateTime(je.SaleTime).ToString("s"), je.SaleWho, je.SalePirce, je.SaleState, System.DateTime.Now.ToString("s"), je.Guid);
+            //}
+            int temp ;
+            using (SQLiteConnection sqlcon = new SQLiteConnection(connectString))
+            {
+                SQLiteCommand cmd = new SQLiteCommand(sql, sqlcon);
+                sqlcon.Open();
+                temp = cmd.ExecuteNonQuery();
+                sqlcon.Close();
+            }
         }
 
         public void Expose()
@@ -38,7 +89,7 @@ namespace WpfApplication_Excel_Image_Expose
             //string path = @"C:\xhz\201401.xlsx";
             string path = @"C:\xhz\综合.xlsx";
 
-            List<PictureInfo> pictures = null;
+            //List<PictureInfo> pictures = null;
             using (SpreadsheetDocument document = SpreadsheetDocument.Open(path, true))
             {
                 WorkbookPart wbPart = document.WorkbookPart;
@@ -47,7 +98,7 @@ namespace WpfApplication_Excel_Image_Expose
                 {
                     WorksheetPart wsPart = (WorksheetPart)wbPart.GetPartById(sheet.Id);
                     DrawingsPart drawingPart = wsPart.GetPartsOfType<DrawingsPart>().ToList().FirstOrDefault();
-                    pictures = new List<PictureInfo>();
+                    //pictures = new List<PictureInfo>();
                     if (drawingPart != null)
                     {
                         foreach (var part in drawingPart.Parts)
@@ -151,6 +202,10 @@ namespace WpfApplication_Excel_Image_Expose
                     //遍历每个sheet页
                     foreach (string sheetName in sheetNames)
                     {
+                        if (!sheetName.Equals("2013"))
+                        {
+                            break;
+                        }
                         IEnumerable<Row> sheetRows = GetWorkBookPartRows(workBookPart, sheetName);
                         if (sheetRows == null || sheetRows.Count() <= 0)
                         {
@@ -158,7 +213,6 @@ namespace WpfApplication_Excel_Image_Expose
                         }
 
                         //将数据导入DataTable,假定第一行为列名,第二行以后为数据
-                        ObservableCollection<Jewelry> oje = new ObservableCollection<Jewelry>();
                         foreach (Row row in sheetRows)
                         {
                             //获取Excel中的列头
@@ -191,15 +245,29 @@ namespace WpfApplication_Excel_Image_Expose
                                             break;
                                         case "B":
                                             month = cellVlue;
-                                            DateTime dt = new DateTime(int.Parse(year), int.Parse(month), 1);
-                                            je.BuyTime = dt.ToString("s");
+                                            if (string.IsNullOrEmpty(month)||string.IsNullOrEmpty(year))
+                                            {
+                                                
+                                            }
+                                            else
+                                            {
+                                                DateTime dt = new DateTime(int.Parse(year), int.Parse(month), 1);
+                                                je.BuyTime = dt.ToString("s");
+                                            }
                                             break;
                                         case "C":
                                             break;
                                         case "D":
                                             break;
                                         case "E":
-                                            je.GoldPrice = Double.Parse(cellVlue);
+                                            if (string.IsNullOrEmpty(cellVlue) ||string.IsNullOrWhiteSpace(cellVlue))
+                                            {
+                                                
+                                            }
+                                            else
+                                            {
+                                                je.GoldPrice = Double.Parse(cellVlue);
+                                            }
                                             break;
                                         case "F":
                                             je.Type = cellVlue;
@@ -228,8 +296,12 @@ namespace WpfApplication_Excel_Image_Expose
                                             }
                                             else if (cellVlue.Length == 4)
                                             {
-                                                DateTime dt2 = new DateTime(int.Parse(cellVlue.Substring(0, 4)), 1, 1);
-                                                je.SaleTime = dt2.ToString("s");
+                                                int temp = 0;
+                                                if (int.TryParse(cellVlue,out temp))
+                                                {
+                                                    DateTime dt2 = new DateTime(int.Parse(cellVlue.Substring(0, 4)), 1, 1);
+                                                    je.SaleTime = dt2.ToString("s");
+                                                }
                                             }
                                             break;
                                         case "K":
