@@ -266,7 +266,8 @@ namespace WpfApplication_Excel_Image_Expose
                                             }
                                             else
                                             {
-                                                je.GoldPrice = Double.Parse(cellVlue);
+                                                int temp = int.Parse(cellVlue.Split('.')[0]);
+                                                je.GoldPrice = Double.Parse(temp.ToString());
                                             }
                                             break;
                                         case "F":
