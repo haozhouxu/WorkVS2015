@@ -19,3 +19,14 @@
 而下图所示Drawing文件夹里则定义了Excel每个工作表中图片如何显示（即把某个图片显示在Excel 某个工作表中的第几行，第几列）
 
 因此我们要做的就是读取Drawing 中的图片定义，并从Media中读取对应的图片出来。 在我的应用中，我使用如下数据结构来定义匹配关系
+
+
+http://blog.csdn.net/sundacheng1989/article/details/21074511
+
+2013
+年份	月份	图片	编号	镶金金额	类别	颜色	是否已卖	卖出者	卖出时间	备注	货存地
+buytime        image            goldpirce   type    colour  state       _saleWho  _saleTime  _mark  _buySource
+
+2014
+年份	月份	图片	编号	镶金金额	类别	颜色	是否已卖	成本	卖出价	卖出者	卖出时间	备注
+                                                                         buyprice  _salePirce
