@@ -41,7 +41,7 @@ namespace WpfApplication_Excel_Image_Expose
 
             foreach (var item in oje)
             {
-                var picture = pictures.FirstOrDefault(a => a.FromRow+1 == int.Parse(item.Row));
+                var picture = pictures.FirstOrDefault(a => a.FromRow + 1 == int.Parse(item.Row));
                 if (null != picture)
                 {
                     item.Image = picture.Image;
@@ -59,7 +59,7 @@ namespace WpfApplication_Excel_Image_Expose
         private void insertInToDB(Jewelry je)
         {
             string connectionFormat = @"Data Source=C:\xhz\{0};";
-        //更新数据，不管是编辑，还是新增
+            //更新数据，不管是编辑，还是新增
             string connectString = string.Format(connectionFormat, "first");
             //把图片转换成base64编码
             string imageString = helper.ImageToBase64(je.Image);
@@ -74,7 +74,7 @@ namespace WpfApplication_Excel_Image_Expose
             //    sqlAll = "update Data set image = '{0}',buytime = '{1}',buyprice = '{2}',buywho = '{3}',goldprice = {4},type = '{5}',color = '{6}',mark = '{7}',buySource = '{8}',ownwho = '{9}',state = '{10}',borrowtime = '{11}',borrowwho = '{12}',borrowprice = {13},borrowreturntime = '{14}',saletime = '{15}',salewho = '{16}',saleprice = {17},salestate = '{18}',updatetime = '{19}' where guid='{20}'";
             //    sql = string.Format(sqlAll, imageString, Convert.ToDateTime(je.BuyTime).ToString("s"), je.BuyPrice, je.BuyWho, je.GoldPrice, je.Type, je.Color, je.Mark, je.BuySource, je.OwnWho, je.State, Convert.ToDateTime(je.BorrowTime).ToString("s"), je.BorrowWho, je.BorrowPirce, Convert.ToDateTime(je.BorrowReturnTime).ToString("s"), Convert.ToDateTime(je.SaleTime).ToString("s"), je.SaleWho, je.SalePirce, je.SaleState, System.DateTime.Now.ToString("s"), je.Guid);
             //}
-            int temp ;
+            int temp;
             using (SQLiteConnection sqlcon = new SQLiteConnection(connectString))
             {
                 SQLiteCommand cmd = new SQLiteCommand(sql, sqlcon);
@@ -253,9 +253,9 @@ namespace WpfApplication_Excel_Image_Expose
                                             break;
                                         case "B":
                                             month = cellVlue;
-                                            if (string.IsNullOrEmpty(month)||string.IsNullOrEmpty(year))
+                                            if (string.IsNullOrEmpty(month) || string.IsNullOrEmpty(year))
                                             {
-                                                
+
                                             }
                                             else
                                             {
@@ -268,14 +268,32 @@ namespace WpfApplication_Excel_Image_Expose
                                         case "D":
                                             break;
                                         case "E":
-                                            if (string.IsNullOrEmpty(cellVlue) ||string.IsNullOrWhiteSpace(cellVlue))
+                                            if (string.IsNullOrEmpty(cellVlue) || string.IsNullOrWhiteSpace(cellVlue))
                                             {
-                                                
+
                                             }
                                             else
                                             {
-                                                int temp = int.Parse(cellVlue.Split('.')[0]);
-                                                je.GoldPrice = Double.Parse(temp.ToString());
+                                                string[] temp = cellVlue.Split('.');
+                                                if (temp.Count() > 1)
+                                                {
+                                                    int last = int.Parse(temp[1].Substring(0, 1));
+                                                    if (last > 4)
+                                                    {
+                                                        int temp1 = int.Parse(temp[0])+1;
+                                                        je.GoldPrice = Double.Parse(temp1.ToString());
+                                                    }
+                                                    else
+                                                    {
+                                                        int temp2 = int.Parse(temp[0]);
+                                                        je.GoldPrice = Double.Parse(temp2.ToString());
+                                                    }
+                                                }
+                                                else if (temp.Count() == 1)
+                                                {
+                                                    int temp3 = int.Parse(temp[0]);
+                                                    je.GoldPrice = Double.Parse(temp3.ToString());
+                                                }
                                             }
                                             break;
                                         case "F":
@@ -306,7 +324,7 @@ namespace WpfApplication_Excel_Image_Expose
                                             else if (cellVlue.Length == 4)
                                             {
                                                 int temp = 0;
-                                                if (int.TryParse(cellVlue,out temp))
+                                                if (int.TryParse(cellVlue, out temp))
                                                 {
                                                     DateTime dt2 = new DateTime(int.Parse(cellVlue.Substring(0, 4)), 1, 1);
                                                     je.SaleTime = dt2.ToString("s");
@@ -314,9 +332,9 @@ namespace WpfApplication_Excel_Image_Expose
                                             }
                                             break;
                                         case "K":
-                                            if (string.IsNullOrEmpty(cellVlue)||string.IsNullOrWhiteSpace(cellVlue))
+                                            if (string.IsNullOrEmpty(cellVlue) || string.IsNullOrWhiteSpace(cellVlue))
                                             {
-                                                
+
                                             }
                                             else
                                             {
