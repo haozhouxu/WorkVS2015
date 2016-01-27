@@ -90,7 +90,7 @@ namespace WpfApplication_Excel_Image_Expose
             string path = @"C:\xhz\综合.xlsx";
 
             //List<PictureInfo> pictures = null;
-            using (SpreadsheetDocument document = SpreadsheetDocument.Open(path, true))
+            using (SpreadsheetDocument document = SpreadsheetDocument.Open(path, false))
             {
                 WorkbookPart wbPart = document.WorkbookPart;
                 var sheets = wbPart.Workbook.Sheets.Take(1);
@@ -107,14 +107,22 @@ namespace WpfApplication_Excel_Image_Expose
                             ImagePart imgPart = (ImagePart)part.OpenXmlPart;
                             //Image img1 = Image.FromStream(imgPart.GetStream());
                             Image img1 = new Image();
-                            var bitmap = new BitmapImage();
-                            bitmap.BeginInit();
-                            bitmap.StreamSource = imgPart.GetStream();
-                            bitmap.CacheOption = BitmapCacheOption.OnLoad;
-                            bitmap.EndInit();
-                            bitmap.Freeze();
-                            img1.Source = bitmap;
-                            pic.Image = img1;
+                            try
+                            {
+                                var bitmap = new BitmapImage();
+                                bitmap.BeginInit();
+                                bitmap.StreamSource = imgPart.GetStream();
+                                bitmap.CacheOption = BitmapCacheOption.OnLoad;
+                                bitmap.EndInit();
+                                bitmap.Freeze();
+                                img1.Source = bitmap;
+                                pic.Image = img1;
+                            }
+                            catch (Exception)
+                            {
+
+                                throw;
+                            }
 
                             //增加编码
                             string ss = "rId";
@@ -306,10 +314,24 @@ namespace WpfApplication_Excel_Image_Expose
                                             }
                                             break;
                                         case "K":
-                                            je.Mark = cellVlue;
+                                            if (string.IsNullOrEmpty(cellVlue)||string.IsNullOrWhiteSpace(cellVlue))
+                                            {
+                                                
+                                            }
+                                            else
+                                            {
+                                                je.Mark = cellVlue;
+                                            }
                                             break;
                                         case "L":
-                                            //je.BuySource = cellVlue;
+                                            if (string.IsNullOrEmpty(cellVlue) || string.IsNullOrWhiteSpace(cellVlue))
+                                            {
+
+                                            }
+                                            else
+                                            {
+                                                je.BuySource = cellVlue;
+                                            }
                                             break;
                                         default:
                                             break;
