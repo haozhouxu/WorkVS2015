@@ -23,8 +23,8 @@ namespace UniqueMachineId
         public MainWindow()
         {
             InitializeComponent();
-            getMNum();
-            string s = FingerPrint.Value();
+            text.Text = getMNum();
+            //string s = FingerPrint.Value();
         }
 
         /// <summary>
