@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Web.Security;
 
 namespace UniqueMachineId
 {
@@ -23,7 +24,7 @@ namespace UniqueMachineId
         public MainWindow()
         {
             InitializeComponent();
-            text.Text = getMNum();
+            text.Text = SHA256Encrypt("AAA");
             //string s = FingerPrint.Value();
         }
 
@@ -122,5 +123,127 @@ namespace UniqueMachineId
             }
             return strAsciiName;//返回注册码
         }
+
+        private string UniqueMachineId()
+        {
+            StringBuilder builder = new StringBuilder();
+
+            String query = "SELECT * FROM Win32_DiskDrive";
+            ManagementObjectSearcher searcher = new ManagementObjectSearcher(query);
+            //  This should only find one
+            foreach (ManagementObject item in searcher.Get())
+            {
+                Object obj = item["Manufacturer"];
+                builder.Append(Convert.ToString(obj));
+                builder.Append(':');
+                obj = item["SerialNumber"];
+                builder.Append(Convert.ToString(obj));
+            }
+
+            return builder.ToString();
+        }
+
+        public string GetMACAddress()
+        {
+            ManagementClass mc = new ManagementClass("Win32_NetworkAdapterConfiguration");
+            ManagementObjectCollection moc = mc.GetInstances();
+
+            string MACAddress = String.Empty;
+
+            foreach (ManagementObject mo in moc)
+            {
+                if (MACAddress == String.Empty)
+                { // only return MAC Address from first card
+                    if ((bool)mo["IPEnabled"] == true) MACAddress = mo["MacAddress"].ToString();
+                }
+                mo.Dispose();
+            }
+
+            return MACAddress;
+        }
+
+        public string SHA1(string source)
+        {
+            return FormsAuthentication.HashPasswordForStoringInConfigFile(source, "SHA1");
+        }
+
+        //MD5不区分大小写的
+        //type 类型，16位还是32位，16位就是取32位的第8到16位
+        public string DoMd5Encode(string pwd, string type)
+        {
+            byte[] result = Encoding.Default.GetBytes(pwd);
+            System.Security.Cryptography.MD5CryptoServiceProvider md5 = new System.Security.Cryptography.MD5CryptoServiceProvider();
+            byte[] output = md5.ComputeHash(result);
+            if (type == "16")
+                return BitConverter.ToString(output).Replace("-", "").ToLower().Substring(8, 16);
+            else
+                return BitConverter.ToString(output).Replace("-", "").ToLower();
+
+        }
+
+
+        /// <summary>
+        /// 对字符串进行SHA1加密
+        /// </summary>
+        /// <param name="strIN">需要加密的字符串</param>
+        /// <returns>密文</returns>
+        public string SHA1_Encrypt(string Source_String)
+        {
+            byte[] StrRes = Encoding.Default.GetBytes(Source_String);
+            System.Security.Cryptography.HashAlgorithm iSHA = new System.Security.Cryptography.SHA1CryptoServiceProvider();
+            StrRes = iSHA.ComputeHash(StrRes);
+            StringBuilder EnText = new StringBuilder();
+            foreach (byte iByte in StrRes)
+            {
+                EnText.AppendFormat("{0:x2}", iByte);
+            }
+            return EnText.ToString();
+        }
+
+        /// <summary>
+        /// SHA256加密，不可逆转
+        /// </summary>
+        /// <param name="str">string str:被加密的字符串</param>
+        /// <returns>返回加密后的字符串</returns>
+        private string SHA256Encrypt(string str)
+        {
+            System.Security.Cryptography.SHA256 s256 = new System.Security.Cryptography.SHA256Managed();
+            byte[] byte1;
+            byte1 = s256.ComputeHash(Encoding.Default.GetBytes(str));
+            s256.Clear();
+            return Convert.ToBase64String(byte1);
+        }
+
+        /// <summary>
+        /// SHA384加密，不可逆转
+        /// </summary>
+        /// <param name="str">string str:被加密的字符串</param>
+        /// <returns>返回加密后的字符串</returns>
+        private string SHA384Encrypt(string str)
+        {
+            System.Security.Cryptography.SHA384 s384 = new System.Security.Cryptography.SHA384Managed();
+            byte[] byte1;
+            byte1 = s384.ComputeHash(Encoding.Default.GetBytes(str));
+            s384.Clear();
+            return Convert.ToBase64String(byte1);
+        }
+
+
+
+        /// <summary>
+        /// SHA512加密，不可逆转
+        /// </summary>
+        /// <param name="str">string str:被加密的字符串</param>
+        /// <returns>返回加密后的字符串</returns>
+        private string SHA512Encrypt(string str)
+        {
+            System.Security.Cryptography.SHA512 s512 = new System.Security.Cryptography.SHA512Managed();
+            byte[] byte1;
+            byte1 = s512.ComputeHash(Encoding.Default.GetBytes(str));
+            s512.Clear();
+            return Convert.ToBase64String(byte1);
+        }
+
+        //end
     }
 }
