@@ -6,7 +6,10 @@
         xmlns:local="clr-namespace:UniqueMachineId"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
-    <Grid>
-        <TextBox x:Name="text" TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Center" />
-    </Grid>
+    <DockPanel LastChildFill="False">
+        <!--<TextBox DockPanel.Dock="Top" MinWidth="500" x:Name="cpu" TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Center" IsReadOnly="True" />
+        <TextBox DockPanel.Dock="Top" MinWidth="500" x:Name="disk" TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Center" IsReadOnly="True" />
+        <TextBox DockPanel.Dock="Top" MinWidth="500" x:Name="mac" TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Center" IsReadOnly="True" />-->
+        <TextBox DockPanel.Dock="Top" MinWidth="500" x:Name="answer" TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Center" IsReadOnly="True" />
+    </DockPanel>
 </Window>
