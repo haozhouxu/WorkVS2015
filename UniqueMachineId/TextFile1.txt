@@ -3,3 +3,7 @@
 C#加密方法汇总(SHA1加密字符串,MD5加密字符串,可逆加密等)
 http://www.cnblogs.com/heimirror/archive/2008/10/13/1309728.html
 http://www.cnblogs.com/XiaoXiaoCoder/archive/2010/10/25/1860127.html
+
+许浩洲：华硕笔记本：
+jueRccF7ddSs6nncdzQijpteYXSOiMU8iwS+s8BLxtk=
+jueRccF7ddSs6nncdzQijpteYXSOiMU8iwS+s8BLxtk=

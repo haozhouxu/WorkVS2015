@@ -24,9 +24,9 @@ namespace UniqueMachineId
         public MainWindow()
         {
             InitializeComponent();
-            cpu.Text = getCpu();
-            disk.Text = GetDiskVolumeSerialNumber();
-            mac.Text = GetMACAddress();
+            //cpu.Text = getCpu();
+            //disk.Text = GetDiskVolumeSerialNumber();
+            //mac.Text = GetMACAddress();
             answer.Text = SHA256Encrypt(getCpu() + SHA256Encrypt(GetDiskVolumeSerialNumber() + SHA256Encrypt(GetMACAddress())));
             //text.Text = SHA256Encrypt("AAA");
             //string s = FingerPrint.Value();
