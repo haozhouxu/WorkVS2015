@@ -30,11 +30,11 @@ namespace WebBrowserTest
         {
             //http://yuqing.p5w.net/yqjc/views/yqjc/dispatch?stockCode=000002&sign=4dd68a2eb0a79e4a85da2016ef5dc4cd
             string url = "http://yuqing.p5w.net/yqjc/views/yqjc/dispatch";
-            string gsdm = "601607";
+            string gsdm = "002267";
             //string gsdm = "002236";
             InitializeComponent();
-            //string totalurl = url + "?stockCode=" + gsdm + "&sign=" + GetMD5(gsdm);
-            string totalurl = @"https://open.weixin.qq.com/connect/qrconnect?appid=wx760a71c0d32a979c&redirect_uri=http%3A%2F%2Fzhulimingchina.xicp.net%2Flogin&response_type=code&scope=snsapi_login&state=470001421@qq.com#wechat_redirect";
+            string totalurl = url + "?stockCode=" + gsdm + "&sign=" + GetMD5(gsdm);
+            //string totalurl = @"https://open.weixin.qq.com/connect/qrconnect?appid=wx760a71c0d32a979c&redirect_uri=http%3A%2F%2Fzhulimingchina.xicp.net%2Flogin&response_type=code&scope=snsapi_login&state=470001421@qq.com#wechat_redirect";
             HttpWebRequest request = WebRequest.CreateHttp(totalurl);
             request.AllowAutoRedirect = false;
             HttpWebResponse response = (HttpWebResponse)request.GetResponse();
