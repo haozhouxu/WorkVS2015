@@ -1,0 +1,15 @@
+﻿<Window x:Class="WpfApplication_eastmoney.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApplication_eastmoney"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="525">
+    <DockPanel>
+        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5">
+            <TextBlock Text="请填写日期（例子：2016-04-14）："/>
+            <TextBox x:Name="targetdate" MinWidth="200" />
+        </StackPanel>
+    </DockPanel>
+</Window>

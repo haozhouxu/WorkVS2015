@@ -35,6 +35,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApplication_Async", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfApplication_Async", "WpfApplication_Async\WpfApplication_Async.csproj", "{6FCA8E42-E604-4E61-8AB8-ACDF67B50EE4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfApplication_eastmoney", "WpfApplication_eastmoney\WpfApplication_eastmoney.csproj", "{37705223-CDF3-4029-A21A-5D6017822F0E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -105,6 +107,10 @@ Global
 		{6FCA8E42-E604-4E61-8AB8-ACDF67B50EE4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6FCA8E42-E604-4E61-8AB8-ACDF67B50EE4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6FCA8E42-E604-4E61-8AB8-ACDF67B50EE4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{37705223-CDF3-4029-A21A-5D6017822F0E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{37705223-CDF3-4029-A21A-5D6017822F0E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{37705223-CDF3-4029-A21A-5D6017822F0E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{37705223-CDF3-4029-A21A-5D6017822F0E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
